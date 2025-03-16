@@ -1,0 +1,12 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y g++ make
+
+WORKDIR /app
+COPY server.cpp .
+
+RUN g++ server.cpp -o server -std=c++11
+
+EXPOSE 8080
+
+CMD ["./server", "-p", "8080"]
