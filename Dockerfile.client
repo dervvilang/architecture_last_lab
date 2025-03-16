@@ -1,0 +1,10 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y g++ make
+
+WORKDIR /app
+COPY client.cpp .
+
+RUN g++ client.cpp -o client -std=c++11
+
+CMD ["./client", "server:8080", "-n", "10"]
